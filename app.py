@@ -19,8 +19,6 @@ def main():
 def predict_image_file():
     try:
         if request.method == 'POST':
-            print(request.files)
-            print(request.files['file'].filename)
             f = request.files['file']
             filename = secure_filename(f.filename)
             f.save(app.config['UPLOAD_FOLDER'] + filename)
