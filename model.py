@@ -4,7 +4,7 @@ from keras.utils import load_img
 
 SIZE = 224, 224
 label = ['Not dishwasher-safe','Dishwasher-safe']
-alexnet = torch.load('alexnet.pt')
+model = torch.load('model.pt')
 
 def preprocess_img(img_pth):
     img = load_img(img_pth, target_size=(SIZE))
@@ -13,8 +13,8 @@ def preprocess_img(img_pth):
 
 def predict_result(X):
     with torch.no_grad():
-        alexnet.eval()
-        outputs = alexnet(X)
+        model.eval()
+        outputs = model(X)
         preds = outputs.argmax(1)
         return label[preds[0].item()]
 
